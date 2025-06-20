@@ -1,8 +1,7 @@
 const mockVideos = [
   {
     id: 1,
-    videoUrl:
-      "https://gateway.pinata.cloud/ipfs/bafybeigzybep26mbrebtndvsdm5wnid7lokzjbcukrmanxg4htloxp3dqm",
+    videoUrl: "/vid1.mp4",
     title: "Big Buck Bunny",
     description: "Open movie by Blender Foundation.",
     userName: "Blender Org",
@@ -17,8 +16,7 @@ const mockVideos = [
   },
   {
     id: 2,
-    videoUrl:
-      "https://gateway.pinata.cloud/ipfs/bafybeiaipcqghvizkbgvarj4m4ognrt5pbd43g2g6lcvbwewpas7hmi6bi",
+    videoUrl: "/vid2.mp4",
     title: "Elephant Dream",
     description: "First Blender Open Movie.",
     userName: "Blender Dev",
@@ -33,8 +31,7 @@ const mockVideos = [
   },
   {
     id: 3,
-    videoUrl:
-      "https://gateway.pinata.cloud/ipfs/bafybeif7s4eqq565ckzsque3umyawditomjcpvmpq4dqvddkwfwnswliqa",
+    videoUrl: "/vid3.mp4",
     title: "Big Buck Bunny (W3Schools)",
     description: "Another source of the same test film.",
     userName: "W3Schools",
@@ -49,8 +46,7 @@ const mockVideos = [
   },
   {
     id: 4,
-    videoUrl:
-      "https://gateway.pinata.cloud/ipfs/bafybeifzxekj6bib2zw3ifdo6gmnl67zpzsr3sq3frvbhudsotgpswqbbi",
+    videoUrl: "/vid4.mp4",
     title: "Park Traffic Sample",
     description: "Sample road and park traffic (640×360)",
     userName: "FileExamples",
@@ -65,8 +61,7 @@ const mockVideos = [
   },
   {
     id: 5,
-    videoUrl:
-      "https://gateway.pinata.cloud/ipfs/bafybeicn44v6mpddhixk334va4v5wbhvqjponooz72hy5a45iiokkife7u",
+    videoUrl: "/vid5.mp4",
     title: "High‑Res Park Video",
     description: "Better quality traffic sample (1280×720)",
     userName: "FileExamples",
@@ -81,8 +76,7 @@ const mockVideos = [
   },
   {
     id: 6,
-    videoUrl:
-      "https://gateway.pinata.cloud/ipfs/bafybeicpbazswj3ol7us6cog23cjh5hzbi2k7bgk2exno4egaofbwbtbxe",
+    videoUrl: "/vid6.mp4",
     title: "Sintel",
     description: "Blender Foundation's Sintel animation.",
     userName: "Blender Foundation",
