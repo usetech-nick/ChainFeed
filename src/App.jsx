@@ -1,0 +1,91 @@
+import { useState, useEffect, useRef } from "react";
+import TopNavBar from "./components/TopNavBar";
+import BottomNavigation from "./components/BottomNavigation";
+import VideoPlayer from "./components/VideoPlayer";
+import LoadingScreen from "./components/LoadingScreen";
+import useWindowSize from "./hooks/useWindowSize";
+import mockVideos from "./data/mockVideos";
+
+const App = () => {
+  const [videos, setVideos] = useState([]);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const containerRef = useRef(null);
+  const { width, height } = useWindowSize();
+  const isMobile = width <= 768;
+
+  useEffect(() => {
+    setTimeout(() => {
+      setVideos(mockVideos);
+      setLoading(false);
+    }, 1000);
+  }, []);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const scrollTop = container.scrollTop;
+      const newIndex = Math.round(scrollTop / height);
+      if (newIndex !== currentVideoIndex) setCurrentVideoIndex(newIndex);
+    };
+
+    container.addEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, [currentVideoIndex, height]);
+
+  const handleCameraClick = () => {
+    console.log("Camera Clicked");
+  };
+
+  const handleNotificationClick = () => {
+    console.log("Notification Clicked");
+  };
+
+  if (loading) return <LoadingScreen />;
+
+  return (
+    <div className="min-h-screen bg-black flex items-center justify-center">
+      <div
+        className="relative bg-black overflow-hidden"
+        style={{
+          width: isMobile ? "100vw" : "390px",
+          height: isMobile ? "100vh" : "844px",
+          borderRadius: isMobile ? "0" : "20px",
+        }}
+      >
+        <TopNavBar
+          onCameraClick={handleCameraClick}
+          onNotificationClick={handleNotificationClick}
+        />
+
+        <div
+          ref={containerRef}
+          className="overflow-y-scroll snap-y snap-mandatory no-scrollbar"
+          style={{
+            height: isMobile ? "100vh" : "844px",
+            WebkitOverflowScrolling: "touch",
+          }}
+        >
+          {videos.map((video, index) => (
+            <div
+              key={video.id}
+              className="snap-start flex-shrink-0"
+              style={{ height: isMobile ? "100vh" : "844px" }}
+            >
+              <VideoPlayer
+                video={video}
+                isActive={index === currentVideoIndex}
+              />
+            </div>
+          ))}
+        </div>
+
+        <BottomNavigation />
+      </div>
+    </div>
+  );
+};
+
+export default App;
