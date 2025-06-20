@@ -46,6 +46,8 @@ const App = () => {
 
   if (loading) return <LoadingScreen />;
 
+  const infiniteVideos = Array(3).fill(videos).flat();
+
   return (
     <div className="min-h-screen bg-black flex items-center justify-center">
       <div
@@ -69,7 +71,7 @@ const App = () => {
             WebkitOverflowScrolling: "touch",
           }}
         >
-          {videos.map((video, index) => (
+          {infiniteVideos.map((video, index) => (
             <div
               key={video.id}
               className="snap-start flex-shrink-0"
