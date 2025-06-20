@@ -10,6 +10,7 @@ const App = () => {
   const [videos, setVideos] = useState([]);
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
   const containerRef = useRef(null);
   const { width, height } = useWindowSize();
   const isMobile = width <= 768;
@@ -77,6 +78,8 @@ const App = () => {
               <VideoPlayer
                 video={video}
                 isActive={index === currentVideoIndex}
+                isMuted={isMuted}
+                setIsMuted={setIsMuted}
               />
             </div>
           ))}

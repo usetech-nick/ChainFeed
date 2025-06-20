@@ -9,10 +9,9 @@ import {
   MoreHorizontal,
 } from "lucide-react";
 
-const VideoPlayer = ({ video, isActive }) => {
+const VideoPlayer = ({ video, isActive, isMuted, setIsMuted }) => {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
   const [isLiked, setIsLiked] = useState(false);
   const [likes, setLikes] = useState(video.likes);
   const [hasTriedToPlay, setHasTriedToPlay] = useState(false);
