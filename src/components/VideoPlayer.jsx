@@ -102,11 +102,11 @@ const VideoPlayer = ({ video, isMuted, setIsMuted }) => {
   return (
     <div
       className="relative w-full bg-black"
-      style={{ height: "calc(100vh - 56px)" }}
+      style={{ height: "calc(100vh - 66px)" }}
     >
       <video
         ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover rounded-xl"
         muted={isMuted}
         loop
         playsInline
@@ -131,7 +131,7 @@ const VideoPlayer = ({ video, isMuted, setIsMuted }) => {
         </div>
       )}
 
-      <div className="absolute bottom-12 left-4 right-16 text-white z-10">
+      <div className="absolute bottom-7 left-4 right-16 text-white z-10">
         <div className="text-blue-400 font-medium text-sm">{video.hashtag}</div>
         <div className="flex items-center gap-3">
           <img
@@ -211,7 +211,7 @@ const VideoPlayer = ({ video, isMuted, setIsMuted }) => {
 
       <button
         onClick={toggleMute}
-        className="absolute top-20 right-4 p-2 bg-black/40 rounded-full z-10"
+        className="absolute top-24 right-4 p-2 bg-black/40 rounded-full z-10"
       >
         {isMuted ? (
           <VolumeX className="w-5 h-5 text-white" />

@@ -1,6 +1,6 @@
 import { Play, Video, Plus, Search } from "lucide-react";
 import { useState } from "react";
-import profilePic from "/assets/pfp.jpg"; // 👈 your circular profile image
+import profilePic from "/assets/pfp.jpg";
 
 const BottomNavigation = () => {
   const [activeTab, setActiveTab] = useState("home");
@@ -10,12 +10,12 @@ const BottomNavigation = () => {
     { id: "search", icon: Video },
     { id: "create", icon: Plus, isSpecial: true },
     { id: "inbox", icon: Search },
-    { id: "profile", isImage: true }, // 👈 this is now a profile image
+    { id: "profile", isImage: true },
   ];
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-black border-t border-gray-800 z-40">
-      <div className="flex justify-around items-center py-1">
+      <div className="flex justify-around items-center h-16">
         {navItems.map((item) => (
           <button
             key={item.id}
