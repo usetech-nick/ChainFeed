@@ -1,15 +1,16 @@
-import { Home, Search, Plus, MessageCircle, User } from "lucide-react";
+import { Play, Video, Plus, Search } from "lucide-react";
 import { useState } from "react";
+import profilePic from "/assets/pfp.jpg"; // 👈 your circular profile image
 
 const BottomNavigation = () => {
   const [activeTab, setActiveTab] = useState("home");
 
   const navItems = [
-    { id: "home", icon: Home, label: "Home" },
-    { id: "search", icon: Search, label: "Discover" },
-    { id: "create", icon: Plus, label: "", isSpecial: true },
-    { id: "inbox", icon: MessageCircle, label: "Inbox" },
-    { id: "profile", icon: User, label: "Profile" },
+    { id: "home", icon: Play },
+    { id: "search", icon: Video },
+    { id: "create", icon: Plus, isSpecial: true },
+    { id: "inbox", icon: Search },
+    { id: "profile", isImage: true }, // 👈 this is now a profile image
   ];
 
   return (
@@ -25,23 +26,20 @@ const BottomNavigation = () => {
               <div className="bg-gradient-to-r from-red-500 to-pink-500 p-3 rounded-xl">
                 <item.icon className="w-6 h-6 text-white" />
               </div>
+            ) : item.isImage ? (
+              <img
+                src={profilePic}
+                className={`w-6 h-6 rounded-full object-cover border-2 ${
+                  activeTab === item.id ? "border-white" : "border-gray-500"
+                }`}
+                alt="Profile"
+              />
             ) : (
-              <>
-                <item.icon
-                  className={`w-6 h-6 ${
-                    activeTab === item.id ? "text-white" : "text-gray-400"
-                  }`}
-                />
-                {item.label && (
-                  <span
-                    className={`text-xs mt-1 ${
-                      activeTab === item.id ? "text-white" : "text-gray-400"
-                    }`}
-                  >
-                    {item.label}
-                  </span>
-                )}
-              </>
+              <item.icon
+                className={`w-6 h-6 ${
+                  activeTab === item.id ? "text-white" : "text-gray-400"
+                }`}
+              />
             )}
           </button>
         ))}

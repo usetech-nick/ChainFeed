@@ -34,6 +34,23 @@ const VideoPlayer = ({ video, isMuted, setIsMuted }) => {
     );
   }
 
+  // Load like state from localStorage
+  useEffect(() => {
+    const savedLike = localStorage.getItem(`liked-${video.id}`);
+    if (savedLike === "true") {
+      setIsLiked(true);
+      setLikes(video.likes + 1); // ✅ Ensures only +1, not cumulative
+    }
+  }, [video.id]);
+
+  // Load follow state from localStorage
+  useEffect(() => {
+    const savedFollow = localStorage.getItem(`followed-${video.userName}`);
+    if (savedFollow === "true") {
+      setIsFollowing(true);
+    }
+  }, [video.userName]);
+
   useEffect(() => {
     const el = videoRef.current;
     if (!el) return;
@@ -76,12 +93,17 @@ const VideoPlayer = ({ video, isMuted, setIsMuted }) => {
 
   const toggleLike = (e) => {
     e.stopPropagation();
-    setIsLiked(!isLiked);
-    setLikes((prev) => (isLiked ? prev - 1 : prev + 1));
+    const newLiked = !isLiked;
+    setIsLiked(newLiked);
+    setLikes((prev) => (newLiked ? prev + 1 : prev - 1));
+    localStorage.setItem(`liked-${video.id}`, newLiked);
   };
 
   return (
-    <div className="relative w-full h-screen bg-black">
+    <div
+      className="relative w-full bg-black"
+      style={{ height: "calc(100vh - 56px)" }}
+    >
       <video
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover"
@@ -109,14 +131,20 @@ const VideoPlayer = ({ video, isMuted, setIsMuted }) => {
         </div>
       )}
 
-      <div className="absolute bottom-24 left-4 right-16 text-white z-10">
+      <div className="absolute bottom-12 left-4 right-16 text-white z-10">
         <div className="text-blue-400 font-medium text-sm">{video.hashtag}</div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
+          <img
+            src={video.userImage}
+            className="w-8 h-8 rounded-full object-cover border border-white"
+          />
           <div className="font-semibold text-base">{video.userName}</div>
           <button
             onClick={(e) => {
               e.stopPropagation();
-              setIsFollowing(!isFollowing);
+              const newFollow = !isFollowing;
+              setIsFollowing(newFollow);
+              localStorage.setItem(`followed-${video.userName}`, newFollow);
             }}
             className={`text-xs px-3 py-1 rounded-full transition-all duration-300 ${
               isFollowing
@@ -127,6 +155,7 @@ const VideoPlayer = ({ video, isMuted, setIsMuted }) => {
             {isFollowing ? "Following" : "Follow"}
           </button>
         </div>
+
         <div className="flex items-center gap-2 mt-1">
           <span className="bg-gray-800 text-xs px-2 py-0.5 rounded-full text-white">
             {video.title}
@@ -137,7 +166,7 @@ const VideoPlayer = ({ video, isMuted, setIsMuted }) => {
         </div>
       </div>
 
-      <div className="absolute top-1/3 right-3 flex flex-col items-center space-y-5 z-12">
+      <div className="absolute top-[60%] right-3 transform -translate-y-1/2 flex flex-col items-center space-y-5 z-12">
         <div className="flex flex-col items-center">
           <button
             onClick={toggleLike}
@@ -145,7 +174,9 @@ const VideoPlayer = ({ video, isMuted, setIsMuted }) => {
           >
             <Heart
               className={`w-7 h-7 transition-colors duration-300 ${
-                isLiked ? "text-red-500 fill-red-500" : "text-white"
+                isLiked
+                  ? "text-red-500 fill-red-500"
+                  : "text-white hover:text-red-400"
               }`}
             />
           </button>
@@ -153,16 +184,16 @@ const VideoPlayer = ({ video, isMuted, setIsMuted }) => {
         </div>
 
         <div className="flex flex-col items-center">
-          <MessageCircle className="w-7 h-7 text-white" />
+          <MessageCircle className="w-7 h-7 text-white hover:text-blue-400 transition-colors duration-200 cursor-pointer" />
           <span className="text-white text-xs mt-1">{video.comments}</span>
         </div>
 
         <div className="flex flex-col items-center">
-          <Share className="w-7 h-7 text-white" />
+          <Share className="w-7 h-7 text-white hover:text-green-400 transition-colors duration-200 cursor-pointer" />
           <span className="text-white text-xs mt-1">{video.shares}</span>
         </div>
         <div className="flex flex-col items-center">
-          <IndianRupee className="w-7 h-7 text-white" />
+          <IndianRupee className="w-7 h-7 text-white hover:text-yellow-400 transition-colors duration-200 cursor-pointer" />
           <span className="text-white text-xs font-medium">
             {video.earnings}
           </span>
@@ -173,7 +204,7 @@ const VideoPlayer = ({ video, isMuted, setIsMuted }) => {
       </div>
 
       {video.isPaid && (
-        <div className="absolute bottom-28 right-3 border border-yellow-400 text-yellow-400 text-xs px-2 py-0.5 rounded-full z-10">
+        <div className="absolute bottom-20 right-6 border border-yellow-400 text-yellow-400 text-sm px-2 py-1 rounded-md z-10">
           Paid
         </div>
       )}
