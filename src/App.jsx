@@ -77,7 +77,7 @@ const App = () => {
         className="relative bg-black overflow-hidden"
         style={{
           width: isMobile ? "100vw" : "390px",
-          height: isMobile ? "calc(var(--vh, 1vh) * 100 )" : "844px",
+          height: isMobile ? "calc(var(--vh, 1vh) * 100 + 100px)" : "844px",
           borderRadius: isMobile ? "0" : "20px",
         }}
       >
