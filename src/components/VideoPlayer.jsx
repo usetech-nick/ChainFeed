@@ -102,7 +102,7 @@ const VideoPlayer = ({ video, isMuted, setIsMuted }) => {
   return (
     <div
       className="relative w-full bg-black"
-      style={{ height: "calc(100vh - 66px)" }}
+      style={{ height: "calc(100vh - 56px)" }}
     >
       <video
         ref={videoRef}
