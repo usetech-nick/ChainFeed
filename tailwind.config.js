@@ -4,16 +4,15 @@ module.exports = {
     extend: {},
   },
   plugins: [
+    require("@tailwindcss/line-clamp"), // ⬅️ Add this
     function ({ addUtilities }) {
       addUtilities({
         ".no-scrollbar": {
-          /* Hide scrollbar for Webkit-based browsers */
           "&::-webkit-scrollbar": {
             display: "none",
           },
-          /* Hide scrollbar for IE, Edge, Firefox */
-          "-ms-overflow-style": "none" /* IE and Edge */,
-          "scrollbar-width": "none" /* Firefox */,
+          "-ms-overflow-style": "none",
+          "scrollbar-width": "none",
         },
       });
     },

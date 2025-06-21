@@ -16,10 +16,22 @@ const App = () => {
   const isMobile = width <= 768;
 
   useEffect(() => {
-    setTimeout(() => {
-      setVideos(mockVideos);
-      setLoading(false);
-    }, 1000);
+    // Simulate API call with 2 sec delay
+    const fetchVideos = () => {
+      setTimeout(() => {
+        // Simulate 10% chance of fetch failure
+        const corruptedVideos = mockVideos.map((vid) => {
+          if (Math.random() < 0.1) {
+            return { ...vid, loadFailed: true };
+          }
+          return { ...vid, loadFailed: false };
+        });
+        setVideos(corruptedVideos);
+        setLoading(false);
+      }, 2000);
+    };
+
+    fetchVideos();
   }, []);
 
   useEffect(() => {
