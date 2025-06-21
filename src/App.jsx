@@ -16,6 +16,17 @@ const App = () => {
   const isMobile = width <= 768;
 
   useEffect(() => {
+    const setVH = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    };
+
+    setVH();
+    window.addEventListener("resize", setVH);
+    return () => window.removeEventListener("resize", setVH);
+  }, []);
+
+  useEffect(() => {
     // Simulate API call with 2 sec delay
     const fetchVideos = () => {
       setTimeout(() => {
@@ -66,7 +77,7 @@ const App = () => {
         className="relative bg-black overflow-hidden"
         style={{
           width: isMobile ? "100vw" : "390px",
-          height: isMobile ? "100dvh" : "844px",
+          height: isMobile ? "calc(var(--vh, 1vh) * 100 - 112px)" : "844px",
           borderRadius: isMobile ? "0" : "20px",
         }}
       >
