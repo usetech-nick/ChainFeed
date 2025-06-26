@@ -59,7 +59,7 @@ const App = () => {
     return () => container.removeEventListener("scroll", handleScroll);
   }, [currentVideoIndex, height]);
 
-  const handleCameraClick = () => {
+  const handleWalletClick = () => {
     console.log("Camera Clicked");
   };
 
@@ -82,7 +82,7 @@ const App = () => {
         }}
       >
         <TopNavBar
-          onCameraClick={handleCameraClick}
+          onWalletClick={handleWalletClick}
           onNotificationClick={handleNotificationClick}
         />
 
@@ -96,7 +96,7 @@ const App = () => {
         >
           {infiniteVideos.map((video, index) => (
             <div
-              key={video.id}
+              key={`${video.id}-${index}`}
               className="snap-start flex-shrink-0"
               style={{ height: isMobile ? "100vh" : "844px" }}
             >

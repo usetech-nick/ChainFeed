@@ -4,7 +4,6 @@ module.exports = {
     extend: {},
   },
   plugins: [
-    require("@tailwindcss/line-clamp"), // ⬅️ Add this
     function ({ addUtilities }) {
       addUtilities({
         ".no-scrollbar": {
