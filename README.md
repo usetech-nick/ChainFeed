@@ -19,27 +19,6 @@ ChainFeed is a TikTok-style vertically scrollable video feed built with **React*
 
 ---
 
-## 📁 File Structure
-
-```
-
-ChainFeed/
-├── public/               # Static assets (optional: self-hosted videos)
-├── src/
-│   ├── components/       # Reusable UI components
-│   ├── data/             # Mock video data
-│   ├── hooks/            # Custom hooks (e.g., useWindowSize)
-│   ├── App.jsx           # Main app layout & scroll logic
-│   ├── main.jsx          # React entry point
-│   └── index.css         # Tailwind base styles
-├── tailwind.config.js    # Tailwind config
-├── vite.config.js        # Vite config
-└── package.json
-
-````
-
----
-
 ## 🛠️ Getting Started
 
 ### 1. Clone the repo
@@ -104,3 +83,4 @@ Frontend & Web3 Developer
 MIT License. Feel free to fork and build on top!
 
 ```
+
