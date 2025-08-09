@@ -83,7 +83,3 @@ Frontend & Web3 Developer
 ## 📄 License
 
 MIT License. Feel free to fork and build on top!
-
-```
-
-
