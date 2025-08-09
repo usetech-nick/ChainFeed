@@ -66,15 +66,17 @@ This project is ready for deployment on platforms like **Vercel** or **Netlify**
 
 ## 📸 Screenshots
 
-> *Add a few screenshots or demo video GIFs here after deployment.*
+<img width="1916" height="963" alt="image" src="https://github.com/user-attachments/assets/17350d74-49a5-4652-a8e8-90b84058276d" />
+<img width="1917" height="962" alt="image" src="https://github.com/user-attachments/assets/34c2539d-a735-4f93-9c49-d92776e3f8af" />
+
 
 ---
 
 ## 🧑‍💻 Author
 
-**Nick Kumar**
+**Nishant Kumar**
 Frontend & Web3 Developer
-📬 [nick@example.com](mailto:nick@example.com)
+📬 nkg9033@gmail.com
 
 ---
 
@@ -83,4 +85,5 @@ Frontend & Web3 Developer
 MIT License. Feel free to fork and build on top!
 
 ```
+
 
